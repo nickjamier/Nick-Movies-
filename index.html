@@ -115,19 +115,30 @@ input, textarea{
 <video id="moviePlayer" controls>
 <source src="movies/movie1.mp4" type="video/mp4">
 </video>
-</center>
+</center>    
 
 <!-- PAYMENT POPUP -->
 <div class="popup" id="paymentPopup">
 <div class="popup-content">
 <h2>Payment Required</h2>
-<p>Send <b>500 UGX</b> to:</p>
+<p>Send <b>1000 UGX</b> to:</p>
 <p style="font-size:20px;"><b>0748536581</b></p>
 
 <button onclick="confirmPayment()">I HAVE PAID</button>
 <br><br>
 <button onclick="closePopup()">Cancel</button>
 </div>
+</div>
+<div class="movie">
+<img src="https://via.placeholder.com/300x450?text=Samurai+Movie">
+<h3>Last Samurai Standing</h3>
+
+<button onclick="openPayment('movies/samurai.mp4')">Play</button>
+
+<a href="movies/samurai.mp4" download>
+<button onclick="openPayment()">Download</button>
+</a>
+
 </div>
 
 <!-- CHAT ROOM -->
