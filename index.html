@@ -1,63 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>NICK HOUSE OF MOVIES</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NICK HOUSE OF MOVIES</title>
 
 <style>
 body{
-background:black;
-color:white;
-font-family:Arial;
-margin:0;
-text-align:center;
+    margin:0;
+    background:#000;
+    font-family:Arial;
+    color:white;
 }
 
 header{
-background:#111;
-padding:20px;
-color:#e50914;
-font-size:28px;
-font-weight:bold;
+    background:#111;
+    padding:20px;
+    font-size:28px;
+    color:#e50914;
+    text-align:center;
+    font-weight:bold;
+}
+
+.movies{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px;
 }
 
 .movie{
-margin-top:30px;
+    background:#111;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+}
+
+.movie img{
+    width:100%;
+    border-radius:8px;
 }
 
 button{
-padding:10px 20px;
-background:#e50914;
-border:none;
-color:white;
-cursor:pointer;
-margin:5px;
+    padding:10px;
+    margin:5px;
+    border:none;
+    background:#e50914;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+video{
+    width:90%;
+    max-width:700px;
+    margin-top:20px;
+    display:none;
 }
 
 .popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-display:none;
-justify-content:center;
-align-items:center;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
 
-.popup-box{
-background:#111;
-padding:30px;
-border-radius:10px;
+.popup-content{
+    background:#111;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
 }
 
-iframe{
-width:90%;
-height:500px;
-margin-top:20px;
-border:none;
-display:none;
+.chat{
+    background:#111;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin-top:10px;
+    border-radius:5px;
+    border:none;
 }
 </style>
 </head>
@@ -68,16 +100,26 @@ display:none;
 🎬 NICK HOUSE OF MOVIES
 </header>
 
-<div class="movie">
-<h2>Last Samurai Standing</h2>
+<div class="movies">
 
-<button onclick="openPayment()">Play Movie</button>
+<div class="movie">
+<img src=https://drive.google.com/file/d/17IVQrQlt6nPgZ8WRo0K7pL8EoPajqdGR/view?usp=drive_link
+<h3>Movie 1</h3>
+<button onclick="openPayment()">Play</button>
+<button onclick="openPayment()">Download</button>
+</div>
 
 </div>
 
-<div class="popup" id="paymentPopup">
-<div class="popup-box">
+<center>
+<video id="moviePlayer" controls>
+<source src="movies/movie1.mp4" type="video/mp4">
+</video>
+</center>
 
+<!-- PAYMENT POPUP -->
+<div class="popup" id="paymentPopup">
+<div class="popup-content">
 <h2>Payment Required</h2>
 <p>Send <b>500 UGX</b> to:</p>
 <p style="font-size:20px;"><b>0748536581</b></p>
@@ -85,35 +127,32 @@ display:none;
 <button onclick="confirmPayment()">I HAVE PAID</button>
 <br><br>
 <button onclick="closePopup()">Cancel</button>
-
 </div>
 </div>
 
-<iframe id="movieFrame"
-src=""
-allow="autoplay"
-allowfullscreen>
-</iframe>
+<!-- CHAT ROOM -->
+<div class="chat">
+<h2>Chat Room</h2>
+<p>Send us message to request movies:</p>
+<textarea placeholder="Type your message here..."></textarea>
+<button>Send</button>
+</div>
 
 <script>
-
-let movieLink="https://drive.google.com/file/d/17IVQrQlt6nPgZ8WRo0K7pL8EoPajqdGR/preview";
-
 function openPayment(){
-document.getElementById("paymentPopup").style.display="flex";
+    document.getElementById("paymentPopup").style.display="flex";
 }
 
 function closePopup(){
-document.getElementById("paymentPopup").style.display="none";
+    document.getElementById("paymentPopup").style.display="none";
 }
 
 function confirmPayment(){
-document.getElementById("paymentPopup").style.display="none";
-document.getElementById("movieFrame").style.display="block";
-document.getElementById("movieFrame").src=movieLink;
+    document.getElementById("paymentPopup").style.display="none";
+    document.getElementById("moviePlayer").style.display="block";
+    alert("Payment confirmed. You can now watch or download.");
 }
-
 </script>
-
+  
 </body>
 </html>
