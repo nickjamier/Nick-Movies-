@@ -1,1 +1,159 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NICK HOUSE OF MOVIES</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    font-family:Arial;
+    color:white;
+}
+
+header{
+    background:#111;
+    padding:20px;
+    font-size:28px;
+    color:#e50914;
+    text-align:center;
+    font-weight:bold;
+}
+
+.movies{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.movie{
+    background:#111;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+}
+
+.movie img{
+    width:100%;
+    border-radius:8px;
+}
+
+button{
+    padding:10px;
+    margin:5px;
+    border:none;
+    background:#e50914;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+video{
+    width:90%;
+    max-width:700px;
+    margin-top:20px;
+    display:none;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.chat{
+    background:#111;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin-top:10px;
+    border-radius:5px;
+    border:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🎬 NICK HOUSE OF MOVIES
+</header>
+
+<div class="movies">
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg">
+<h3>Movie 1</h3>
+<button onclick="openPayment()">Play</button>
+<button onclick="openPayment()">Download</button>
+</div>
+
+</div>
+
+<center>
+<video id="moviePlayer" controls>
+<source src="movies/movie1.mp4" type="video/mp4">
+</video>
+</center>
+
+<!-- PAYMENT POPUP -->
+<div class="popup" id="paymentPopup">
+<div class="popup-content">
+<h2>Payment Required</h2>
+<p>Send <b>500 UGX</b> to:</p>
+<p style="font-size:20px;"><b>0748536581</b></p>
+
+<button onclick="confirmPayment()">I HAVE PAID</button>
+<br><br>
+<button onclick="closePopup()">Cancel</button>
+</div>
+</div>
+
+<!-- CHAT ROOM -->
+<div class="chat">
+<h2>Chat Room</h2>
+<p>Send us message to request movies:</p>
+<textarea placeholder="Type your message here..."></textarea>
+<button>Send</button>
+</div>
+
+<script>
+function openPayment(){
+    document.getElementById("paymentPopup").style.display="flex";
+}
+
+function closePopup(){
+    document.getElementById("paymentPopup").style.display="none";
+}
+
+function confirmPayment(){
+    document.getElementById("paymentPopup").style.display="none";
+    document.getElementById("moviePlayer").style.display="block";
+    alert("Payment confirmed. You can now watch or download.");
+}
+</script>
+
+</body>
+</html>
+
